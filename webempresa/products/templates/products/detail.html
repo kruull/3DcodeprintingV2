@@ -1,0 +1,160 @@
+{% extends 'core/base.html' %}
+
+
+
+{% load static %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+
+            
+<div class="container">
+    <br>
+    <center>   
+    <h1>
+        {{product.title}}
+    </h1>
+    </center>
+    <br>
+    
+
+    <!--Carrousel version PC-->
+    
+    <center> 
+    <div class="d-none d-sm-none d-md-block">
+        <div class="col-7">
+            <div class = "container section">
+                <div class="row">
+                    
+                        <div class="carousel carousel-slider">
+                            {% for image in object.producto_imagenes.all  %}
+                                <div class="carousel-item">
+                                    <img src="/media/{{image.image}}"> 
+                                </div>
+                            {% endfor %}
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Carrousel version Movil-->
+    <div class="d-block d-sm-block d-md-none">
+        <div class="col-12">
+            <div class = "container section">
+                <div class="row">
+                    
+                        <div class="carousel carousel-slider">
+                            {% for image in object.producto_imagenes.all  %}
+                                <div class="carousel-item">
+                                    <img src="/media/{{image.image}}"> 
+                                </div>
+                            {% endfor %}
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </center>  
+    <br>
+    <span class="new badge" data-badge-caption="">{{product.price}} €</span>
+    <br>
+    <br>
+    <div class="col s8 z-depth-1">
+        <center>
+        Hola soy la descripcion
+            {{product.descripcion}}
+        </center>
+    </div>
+    
+    <br>
+
+     <br>
+
+    <ul class="collection">
+        
+        {% for comentario in object.producto_comentarios.all %}
+            <li class="collection-item">
+                <span class="title">mensaje</span>
+                <p>
+                    {{comentario.comentario}}
+                    <br>
+                    {{comentario.usuario}} -  {{comentario.fecha}}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    
+    <form class="col s12" method="post" action="{% url 'crear_comentario' %}">
+        {% csrf_token %}
+        <div class="input-field col s6">
+            <input placeholder="Nombre" id="name" type="text" class="validate" name="usuario" onKeyUp="habilitar()" onclick="habilitar()">
+            <label for="name">Nombre</label>
+        </div>
+
+        <input type="hidden" name="producto" value="{{object.pk}}">
+
+        <div class="row">
+            <div class="input-field col s10">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea" name="comentario" onKeyUp="habilitar()" onclick="habilitar()"></textarea>
+                <label for="icon_prefix2">Comentario</label>
+            </div>
+            <div class="input-field ">
+                    <button id="BotonComentar" class="waves-effect waves-light btn-large" disabled="true">
+                        Comentar
+                    </button>                  
+            </div>
+        </div>
+        
+    </form>
+    
+    
+
+</div>
+
+<script >
+    src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"
+    
+</script> 
+
+
+
+
+
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.carousel');
+        var instances = M.Carousel.init(elems,{
+            fullWidth: true,
+            duration: 200,
+            indicators: true,
+  
+        });
+    });
+    
+
+
+    function habilitar() {
+        Nombre = document.getElementById("name")
+        Boton = document.getElementById("BotonComentar")
+        Comentario = document.getElementById("icon_prefix2")
+        if ((Nombre.value != "")&&(Comentario.value != "")){
+            Boton.disabled = false;
+        }else{
+            Boton.disabled = true;
+        }
+    
+        
+    }
+</script>
+
+{% endblock %}

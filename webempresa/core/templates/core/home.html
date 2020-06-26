@@ -1,0 +1,105 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br>
+        <br>
+        <div class="row center">
+          <h5 class="header col s12 light">Obtén modelos impresos en resina a precios económicos.</h5>
+        </div>
+        <div class="row center">
+          <h5 class="header col s12 light">¡Dale un vistazo a nuestra web para ver todo lo que ofrecemos!</h5>
+        </div>
+        
+        <div class="row center">
+          <a href="{% url 'products' %}" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Catálogo</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'core/img/InicioFondo1.jpg' %}" alt="Unsplashed background img 1"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Servicio completo</h5>
+
+            <p class="light">Ofrecemos servicios completos. Puedes pasarnos el archivo e imprimiremos tu modelo con nuestras impresoras o también puedes indicarnos lo que necesitas y realizaremos el modelado de tu pieza para que puedas imprimirla!</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Relacion con nuestros clientes</h5>
+
+            <p class="light">Te enviaremos fotos a medida que tus piezas estén listas y te iremos informando tal y como vayamos imprimiendo tus modelos. ¡Estarán listos en pocos dias!</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Calidad de nuestros acabados</h5>
+
+            <p class="light">Todas nuestras piezas se entregán con los soportes. También se les aplicará un baño de alcohol isopropilico y un lavado con agua para eliminar cualquier resto de resina sin curar que quede. Por último también se les aplica un curado con luz UV para que las piezas adquieran la dureza final.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light"></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'core/img/InicioFondo2.jpg' %}" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>¡Contáctanos!</h4>
+          <p class="left-align light">No dudes en consultarnos para cualquier duda o proyecto que tengas en mente. Dinos tus necesidades y buscaremos la resina que mejor se adapte a tus necesidades. Te informaremos de todo el proceso y te ayudaremos en cualquier duda que tengas. También podremos ayudarte a realizar el modelado de tus piezas! </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light"></h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'core/img/InicioFondo3.jpg' %}" alt="Unsplashed background img 4"></div>
+  </div>
+
+{% endblock %}

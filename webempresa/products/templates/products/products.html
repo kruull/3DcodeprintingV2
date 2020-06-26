@@ -1,0 +1,129 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Catálogo{% endblock %}
+
+
+
+{% block content %}
+<link href="/static/css/nouislider.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<div class="container">
+  <br>
+  <center>
+    <h1>
+      CATEGORIAS
+    </h1>
+  </center>
+       
+
+  
+  <div class="row">
+    
+    {% for category in category_list %}
+    <div class="col-md-4 mt-2 mb-3 ">
+      <div class="row p-3">
+        <div class="col-md-12">
+          <div class="card">
+
+            <div class="card-image">
+              
+              <a href="{% url 'category' category.id %}">
+              
+              <div style="width: 20rem;
+                height: 15rem;
+                background-image: url(/media/{{category.image}});
+                background-size: cover;
+                max-width: 100%;
+                width: 100%;">
+              
+              </div>
+              <span class="card-title">{{category.name}}</span>
+              </a>
+              
+            </div>
+
+          </div>
+          
+        </div>
+      </div>
+     
+    </div>
+    
+         
+    {% empty %}
+    <center>
+      <p>
+        No tenemos resultados para tu búsqueda
+      </p>
+    </center>
+    {% endfor %}
+      
+      
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-5">  
+    </div>
+    <div class="col-7">  
+		{% if is_paginated %}
+		
+			<ul class="pagination">
+				{% if page_obj.has_previous %}
+				<li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+				{% else %}
+				<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+				{% endif %}
+
+				{% for page in paginator.page_range %}
+				<li class="waves-effect  {% if page == page_obj.number %}active{% endif %}"><a href="?page={{ page }}">{{ page }}</a></li>
+				{% endfor %}
+
+
+				{% if page_obj.has_next %}
+				<li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+				{% else %}
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+				{% endif %}
+			</ul>
+    
+		{% endif %}
+    </div>
+
+	</div>
+  
+
+  <br>
+</div>
+<script src="/static/js/nouislider.min.js"></script>
+<script src="/static/js/wNumb.js"></script>
+<script>
+  $(document).ready(function(){
+    var slider = document.getElementById('test-slider');
+    noUiSlider.create(slider, {
+      start: [{{minimo}}, {{maximo}}],
+      connect: true,
+      step: 1,
+      orientation: 'horizontal', // 'horizontal' or 'vertical'
+      range: {
+        'min': 0,
+        'max': 100
+      },
+      format: wNumb({
+        decimals: 0
+      })
+    });
+    // evento para cuando cambiamos el slider
+    $('#test-slider')[0].noUiSlider.on('change',function(v,handle){
+      $("#minimo").val(v[0])
+      $("#maximo").val(v[1])
+    });
+  })
+</script>
+
+{% endblock %}
+
+
+    
